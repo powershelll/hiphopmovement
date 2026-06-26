@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIP-HOP MOVEMENTS GUIDE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+            color: #ffffff;
+            font-family: 'Inter', 'Arial', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Фоновые металлические элементы */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(200, 200, 200, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(150, 150, 150, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        header {
+            text-align: left;
+            padding: 80px 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), rgba(26, 26, 46, 0.85));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            right: -100px;
+            top: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200, 200, 200, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 4.5em;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+            max-width: 800px;
+        }
+        
+        .subtitle {
+            font-size: 1em;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 60px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .search-box::placeholder {
+            color: #666666;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(200, 200, 200, 0.1);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .filter-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .movements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .movement-card {
+            background: linear-gradient(135deg, rgba(40, 40, 60, 0.6), rgba(30, 30, 50, 0.6));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .movement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+        
+        .movement-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: linear-gradient(135deg, rgba(50, 50, 70, 0.8), rgba(40, 40, 60, 0.8));
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .movement-name {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .movement-desc {
+            color: #b8b8b8;
+            margin-bottom: 18px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .movement-how {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid rgba(200, 200, 200, 0.3);
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            color: #d0d0d0;
+            font-size: 0.9em;
+        }
+        
+        .movement-how strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .video-link {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 11px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .video-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(200, 200, 200, 0.1);
+        }
+        
+        .difficulty {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid;
+        }
+        
+        .difficulty.easy {
+            background: rgba(100, 200, 150, 0.15);
+            color: #90d9b8;
+            border-color: rgba(100, 200, 150, 0.3);
+        }
+        
+        .difficulty.medium {
+            background: rgba(100, 150, 250, 0.15);
+            color: #90b9ff;
+            border-color: rgba(100, 150, 250, 0.3);
+        }
+        
+        .difficulty.hard {
+            background: rgba(250, 100, 100, 0.15);
+            color: #ff9090;
+            border-color: rgba(250, 100, 100, 0.3);
+        }
+        
+        .stats {
+            text-align: left;
+            padding: 30px 0;
+            color: #999999;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+        
+        .stats span {
+            display: inline-block;
+            margin-right: 40px;
+            font-size: 1em;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 80px 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666666;
+            margin-top: 80px;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
+        }
+        
+        .logo-text {
+            font-size: 4em;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(200, 200, 200, 0.1);
+            font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666666;
+            font-size: 1.3em;
+        }
+        
+        @media (max-width: 768px) {
+            header { padding: 60px 30px; }
+            h1 { font-size: 2.5em; }
+            .container { padding: 40px 30px; }
+            .movements-grid {
+                grid-template-columns: 1fr;
+            }
+            .controls {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .filter-buttons {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HIP-HOP<br>MOVEMENTS<br>GUIDE</h1>
+        <p class="subtitle">55 Классических движений</p>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <input type="text" id="search" class="search-box" placeholder="Поиск движения..." onkeyup="filterMovements()">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="setFilter('all')">ВСЕ</button>
+                <button class="filter-btn" onclick="setFilter('easy')">ЛЕГКИЕ</button>
+                <button class="filter-btn" onclick="setFilter('medium')">СРЕДНИЕ</button>
+                <button class="filter-btn" onclick="setFilter('hard')">СЛОЖНЫЕ</button>
+            </div>
+        </div>
+
+        <div class="stats">
+            <span id="movementCount">55 движений</span>
+            <span id="foundCount"></span>
+        </div>
+
+        <div class="movements-grid" id="movements"></div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            Движения не найдены
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo-text">ENZHI CREW</div>
+        <p style="color: #999999; font-size: 0.95em; letter-spacing: 2px; text-transform: uppercase;">HIP-HOP MOVEMENTS GUIDE</p>
+    </footer>
+
+    <script>
+        const movements = [
+            { name: 'Criss Cross', desc: 'Ноги перекрещиваются в прыжке', how: 'Встань и быстро прыгай, перекрещивая ноги', difficulty: 'medium', video: 'criss+cross+hip+hop+dance+tutorial' },
+            { name: 'Running Man', desc: 'Бег на месте с высокими коленями', how: 'Поднимай колени вверх поочередно как при беге', difficulty: 'easy', video: 'running+man+dance+tutorial+hip+hop' },
+            { name: 'Happy Feet', desc: 'Быстрые лёгкие движения ступнями', how: 'Быстро переступай ногами на месте легко', difficulty: 'easy', video: 'happy+feet+dance+hip+hop+tutorial' },
+            { name: 'V-Step', desc: 'Ноги разводятся в форме V', how: 'Прыгай и разводи ноги в стороны как буква V', difficulty: 'medium', video: 'v+step+dance+tutorial+hip+hop' },
+            { name: 'Party Machine', desc: 'Энергичное ритмичное движение', how: 'Согни ноги и двигай туловищем ритмично вверх-вниз', difficulty: 'easy', video: 'party+machine+dance+tutorial' },
+            { name: 'Monastery', desc: 'Изоляция верхней части тела', how: 'Двигай только верхней частью тела, нижняя неподвижна', difficulty: 'medium', video: 'monastery+dance+move+tutorial' },
+            { name: 'SpongeBob', desc: 'Забавное движение как персонаж', how: 'Прыгай весело как Спанч Боб из мультфильма', difficulty: 'easy', video: 'spongebob+dance+tutorial+hip+hop' },
+            { name: 'BK Bounce', desc: 'Качание с отскоками', how: 'Прыгай-отскакивай как мячик на месте', difficulty: 'easy', video: 'brooklyn+bounce+dance+tutorial' },
+            { name: 'Walk It Out', desc: 'Уверенный шаг вперёд', how: 'Делай уверенные шаги вперед с качанием туловища', difficulty: 'easy', video: 'walk+it+out+dance+tutorial' },
+            { name: 'The Wop', desc: 'Резкие движения головой и руками', how: 'Резко двигай головой и руками в разные стороны', difficulty: 'hard', video: 'the+wop+dance+tutorial' },
+            { name: 'Party Duke', desc: 'Движение из 80х годов', how: 'Быстрые энергичные движения ног с качанием', difficulty: 'medium', video: 'party+duke+dance+move+tutorial' },
+            { name: 'Kick Out', desc: 'Выпад ноги в сторону', how: 'Резко выпади ногой в сторону с поворотом туловища', difficulty: 'medium', video: 'kick+out+dance+move+tutorial' },
+            { name: 'March Step', desc: 'Как воинский марш', how: 'Поднимай колени высоко как при военном марше', difficulty: 'easy', video: 'march+step+dance+tutorial' },
+            { name: 'Horse Move', desc: 'Движение как лошадь', how: 'Прыгай с высокими коленями и топаньем как лошадь', difficulty: 'easy', video: 'horse+move+dance+tutorial' },
+            { name: 'Wu Tang', desc: 'Боевые искусства', how: 'Боксёрская стойка с быстрыми движениями рук и ног', difficulty: 'hard', video: 'wu+tang+dance+move+tutorial' },
+            { name: 'Reject', desc: 'Отрывистое движение туловища', how: 'Резко отклоняй туловище вперед-назад как отталкивание', difficulty: 'medium', video: 'reject+dance+move+tutorial' },
+            { name: 'Roger Rabbit', desc: 'Быстрые прыгающие движения', how: 'Прыгай как кролик с быстрыми движениями рук', difficulty: 'easy', video: 'roger+rabbit+dance+tutorial' },
+            { name: 'Atl Stomp', desc: 'Топающее движение', how: 'Топай ногами о пол очень громко и ритмично', difficulty: 'easy', video: 'atlanta+stomp+dance+tutorial' },
+            { name: 'Indian Step', desc: 'Элементы индейского танца', how: 'Движения вдохновлены индейскими танцами', difficulty: 'medium', video: 'indian+step+dance+hip+hop+tutorial' },
+            { name: 'Z-Step', desc: 'Движение в форме Z', how: 'Двигай ногами зигзагообразно как буква Z', difficulty: 'hard', video: 'z+step+dance+move+tutorial' },
+            { name: 'ShamRock', desc: 'Быстрое качающееся движение', how: 'Быстро качайся как в ирландском танце', difficulty: 'medium', video: 'shamrock+dance+move+tutorial' },
+            { name: 'Al B', desc: 'Плавное и ритмичное', how: 'Плавные грациозные движения туловища', difficulty: 'medium', video: 'al+b+sure+dance+move+tutorial' },
+            { name: 'Back Jump', desc: 'Прыжок назад', how: 'Прыгай резко назад с движением рук', difficulty: 'medium', video: 'back+jump+dance+tutorial' },
+            { name: 'Kick', desc: 'Удар ногой', how: 'Резко выбрасывай ногу как удар', difficulty: 'easy', video: 'kick+dance+move+hip+hop' },
+            { name: 'Back Jump + Kick', desc: 'Комбинация прыжка и удара', how: 'Сначала back jump, потом сразу kick', difficulty: 'hard', video: 'back+jump+kick+combo+dance' },
+            { name: 'Heel Toe', desc: 'Пятка-носок', how: 'Поочередно поднимай пятку и носок быстро', difficulty: 'easy', video: 'heel+toe+dance+tutorial' },
+            { name: 'Reebok', desc: 'Скользящие движения', how: 'Скользи ногами по полу очень быстро', difficulty: 'easy', video: 'reebok+dance+move+80s+tutorial' },
+            { name: 'Dougie', desc: 'Качание бёдер', how: 'Качай бёдра вперёд-назад плавно и сексуально', difficulty: 'easy', video: 'dougie+dance+tutorial' },
+            { name: 'Biz Markie', desc: 'Уникальное движение', how: 'Забавное комичное движение вдохновлено рэпером', difficulty: 'medium', video: 'biz+markie+dance+move+tutorial' },
+            { name: 'Town Wop', desc: 'Городской вариант Wop', how: 'Резкие движения головой и рук с городским стилем', difficulty: 'hard', video: 'town+wop+dance+move+tutorial' },
+            { name: 'The Charleston', desc: 'Танец 20х годов', how: 'Быстрые движения ног как в классическом танце', difficulty: 'medium', video: 'charleston+dance+tutorial' },
+            { name: 'Cabbage Patch', desc: 'Как срываешь капусту', how: 'Движения рук как будто срываешь капусту', difficulty: 'easy', video: 'cabbage+patch+dance+tutorial' },
+            { name: 'Erk & Jerk', desc: 'Дёргающие движения', how: 'Быстрые рывистые движения телом', difficulty: 'medium', video: 'erk+and+jerk+dance+tutorial' },
+            { name: 'C-Walk', desc: 'Характерный зигзаг', how: 'Специфический шаг с зигзагообразным движением', difficulty: 'hard', video: 'c+walk+dance+tutorial' },
+            { name: 'Roof Top', desc: 'Прыгающее движение', how: 'Прыгай как на крыше весело и энергично', difficulty: 'easy', video: 'roof+top+dance+move+tutorial' },
+            { name: 'Steve Martin', desc: 'Комедийное движение', how: 'Комичное забавное движение вдохновлено актёром', difficulty: 'easy', video: 'steve+martin+dance+move+hip+hop' },
+            { name: 'Bart Simpson', desc: 'Наклон в сторону', how: 'Согни одну ногу и наклонись в сторону', difficulty: 'easy', video: 'bart+simpson+dance+move+tutorial' },
+            { name: 'Crab', desc: 'Движение как краб', how: 'Движения туловища вперёд-назад как краб', difficulty: 'medium', video: 'crab+dance+move+hip+hop' },
+            { name: 'Crazy Legs', desc: 'Быстрые движения ног', how: 'Максимально быстрые и сложные движения ногами', difficulty: 'hard', video: 'crazy+legs+dance+tutorial' },
+            { name: 'Step and Touch', desc: 'Шаг с касанием', how: 'Шаг в сторону и касание пола другой ногой', difficulty: 'easy', video: 'step+and+touch+dance+tutorial' },
+            { name: 'Cat Daddy', desc: 'Грациозное как кот', how: 'Грациозное изящное движение как кот', difficulty: 'medium', video: 'cat+daddy+dance+tutorial' },
+            { name: 'Prep', desc: 'Стильное молодёжное', how: 'Стильное уверенное движение молодёжной культуры', difficulty: 'medium', video: 'prep+dance+move+tutorial' },
+            { name: 'James Brown', desc: 'Легендарный певец', how: 'Энергичное мощное движение вдохновлено James Brown', difficulty: 'hard', video: 'james+brown+dance+move+tutorial' },
+            { name: 'Salsa Step', desc: 'Латинские элементы', how: 'Движение с элементами латинского танца сальса', difficulty: 'medium', video: 'salsa+step+dance+hip+hop' },
+            { name: 'Jack in the Box', desc: 'Как Джек из коробки', how: 'Прыгающие движения как пружина Джека', difficulty: 'easy', video: 'jack+in+the+box+dance+tutorial' },
+            { name: 'Party Dance', desc: 'Вечериночный танец', how: 'Любое весёлое энергичное движение на вечеринке', difficulty: 'easy', video: 'party+dance+hip+hop+tutorial' },
+            { name: 'Janet Jackson', desc: 'Вдохновлено певицей', how: 'Сексуальное красивое движение вдохновлено Janet Jackson', difficulty: 'medium', video: 'janet+jackson+dance+move+tutorial' },
+            { name: 'Around the World', desc: 'Круговое движение', how: 'Туловище вращается по кругу как вокруг мира', difficulty: 'hard', video: 'around+the+world+dance+move+tutorial' },
+            { name: 'Kick and Slide', desc: 'Удар и скольжение', how: 'Сначала резкий kick потом скольжение ноги', difficulty: 'medium', video: 'kick+and+slide+dance+tutorial' },
+            { name: 'Harlem Shake', desc: 'Трясение из Гарлема', how: 'Энергичное быстрое трясение телом', difficulty: 'easy', video: 'harlem+shake+dance+tutorial' },
+            { name: 'TLC', desc: 'Вдохновлено группой', how: 'Движение с характерной изоляцией вдохновлено группой TLC', difficulty: 'medium', video: 'tlc+dance+move+tutorial' },
+            { name: 'Popcorn', desc: 'Как попкорн', how: 'Прыгающие движения как попкорн в микроволновке', difficulty: 'easy', video: 'popcorn+dance+move+tutorial' },
+            { name: 'Smurf', desc: 'Как маленький смёрф', how: 'Быстрые прыгающие движения как маленький смёрф', difficulty: 'easy', video: 'smurf+dance+move+tutorial' },
+            { name: 'Robocop', desc: 'Механичные движения', how: 'Жёсткие механичные движения как робот', difficulty: 'hard', video: 'robocop+dance+move+tutorial' },
+            { name: 'PA DE BU RE', desc: 'Классическое движение', how: 'Три шага в определённом ритме - па-де-бу-ре', difficulty: 'medium', video: 'pa+de+bu+re+dance+move+tutorial' }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderMovements(filter = 'all', searchTerm = '') {
+            const container = document.getElementById('movements');
+            const noResults = document.getElementById('noResults');
+            const filtered = movements.filter(m => {
+                const matchesSearch = m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    m.desc.toLowerCase().includes(searchTerm.toLowerCase());
+                const matchesFilter = filter === 'all' || m.difficulty === filter;
+                return matchesSearch && matchesFilter;
+            });
+
+            if (filtered.length === 0) {
+                container.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                container.style.display = 'grid';
+                noResults.style.display = 'none';
+            }
+
+            container.innerHTML = filtered.map(m => `
+                <div class="movement-card">
+                    <div class="movement-name">${m.name}</div>
+                    <div class="movement-desc">${m.desc}</div>
+                    <div class="movement-how">
+                        <strong>Как делать:</strong> ${m.how}
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=${m.video}" target="_blank" class="video-link">
+                        Смотреть видео
+                    </a>
+                    <div class="difficulty ${m.difficulty}">
+                        ${m.difficulty === 'easy' ? 'Легко' : m.difficulty === 'medium' ? 'Средне' : 'Сложно'}
+                    </div>
+                </div>
+            `).join('');
+
+            const found = filtered.length;
+            const foundCount = document.getElementById('foundCount');
+            if (found < movements.length) {
+                foundCount.textContent = `Найдено: ${found}`;
+            } else {
+                foundCount.textContent = '';
+            }
+        }
+
+        function filterMovements() {
+            const search = document.getElementById('search').value;
+            renderMovements(currentFilter, search);
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            filterMovements();
+        }
+
+        // Инициализация
+        renderMovements();
+    </script>
+</body>
+</html>
